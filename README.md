@@ -1,7 +1,18 @@
 # telegraph-Image
 
+> 旧版在[static](https://github.com/x-dr/telegraph-Image/tree/static)分支
 
-### [Demo](https://img.131213.xyz/)
+
+### Demo
+[https://img.131213.xyz](https://img.131213.xyz/)
+
+### 测试
+[https://testimg.131213.xyz/](https://testimg.131213.xyz/)
+> 测试账号：admin
+
+> 测试密码：admin
+
+
 
 ### 开发计划
 - [x] 后台管理
@@ -23,73 +34,66 @@
 5. 支持后台图片管理，日志管理，查看访问前20的Referer、IP、img,可以对上传的图片进行在线预览，添加白名单，黑名单等操作
 
 
-### 更新日志
-
-+ 2023-8-21 : 支持自建鉴黄api
-
-+ 2023-8-13 ：图片访问日志,数据库表已修改 更新时请先删除表`imginfo`重新创建
-
-+ 2023-8-12 ：图片管理功能
 
 ### 利用Cloudflare pages部署
 
-> [开启图片管理功能教程](./docs/manage.md)
+
 
 1. 点击[Use this template](https://github.com/x-dr/telegraph-Image/generate)按钮创建一个新的代码库。
 
 2. 登录到[Cloudflare](https://dash.cloudflare.com/)控制台.
 3. 在帐户主页中，选择`pages`> ` Create a project` > `Connect to Git`
-4. 选择你创建的项目存储库，在`Set up builds and deployments`部分中，全部默认即可。
 
-<img src="https://img.131213.xyz/file/beb0385822e24c9a9d459.png"  height="50%" width="50%" />
+4. 选择你创建的项目存储库，在`Set up builds and deployments`部分中，`Framework preset(框架)`选`Next.js`即可。
 
-5. 点击`Save and Deploy`部署，然后点`Continue to project`即可看到访问域名
+<img src="./docs/img/nextjsimages1.png"   height="50%" width="50%"/>
 
->  访问http(s)://你的域名/admin 即可打开后台管理页面
+5. 点击`Save and Deploy`部署 。
 
->  访问http(s)://你的域名/list 即可打开log管理页面
+6. [设置环境变量&开启图片管理功能](./docs/manage.md)
 
+7. 设置兼容性标志，前往后台依次点击`设置`->`函数`->`兼容性标志`->`配置生产兼容性标志` 填写 `nodejs_compat`
 
-#### 后台管理不是很完善 但基本的应该都有了 
+<img src="./docs/img/image2.png"   height="50%" width="50%"/>
 
-**[开启图片管理功能教程](./docs/manage.md)**
+8. 前往后台点击`部署` 找到最新的一次部署点`重试部署`。
 
-
----
----
-### 利用vercel部署(vercel分支)
-
-[![Deploy with Vercel](https://vercel.com/button?utm_source=busiyi&utm_campaign=oss)](https://vercel.com/new/clone?utm_source=busiyi&utm_campaign=oss&repository-url=https://github.com/x-dr/telegraph-Image/tree/vercel)
-
----
+<img src="./docs/img/image3.png"   height="50%" width="50%"/>
 
 
 
 
+> 环境变量
 
-### 自定义cdn加速
-> 默认是使用cloudflare ,修改 `asset/js/upload.js#L219` 即可
+| 变量名称      | 值 |
+| ----------- | ----------- |
+|PROXYALLIMG  | 反向代理所有图片（默认为false）|
+|BASIC_USER   | <后台管理页面登录用户名称>|
+|BASIC_PASS   | <后台管理页面登录用户密码>|
+|ModerateContentApiKey   | <审查图像内容的API key>|
+|RATINGAPI     | <[自建的鉴黄api](https://github.com/x-dr/nsfwjs-api) >|
+|CUSTOM_DOMAIN | https://your-custom-domain.com (自定义加速域名) |
+|TG_BOT_TOKEN  | 123468:AAxxxGKrn5 (从 [@BotFather](https://t.me/BotFather)) |
+|TG_CHAT_ID   | -1234567 (频道的ID,TG Bot要是该频道或群组的管理员) |
 
-+ 如用cachefly加速 
+> TG_BOT_TOKEN
 
-cachefly绑定cloudflare pages
-<img src="https://img.131213.xyz/file/c19f7ea17ce2027b13dfa.png" />
+<a href="https://img.131213.xyz/api/file/02735b83dbdcf5fe31a45.png" target="_blank"><img src="https://img.131213.xyz/api/file/02735b83dbdcf5fe31a45.png" height="50%" width="50%"></a>
 
-修改代码
+> 获取ID机器人 [@VersaToolsBot](https://t.me/VersaToolsBot)
 
-```diff
-- const PROXYURL = ""  //自定义加速域名 默认是使用cloudflare
-+ const PROXYURL = "https://xxxxxxxxxx.cachefly.net"  //自定义加速域名 默认是使用cloudflare
-```
+> `TG_CHAT_ID`为目标对话的唯一标`ID`或目标频道的用户名（eg: @channelusername），当目标对话为个人或私有频道是只能是`ID`,当为公开频道或群组是可以为目标频道的用户名（eg: `@channelusername`）
 
 
 
 
-### 感谢
+### Star History
 
-[@cf-pages](https://github.com/cf-pages/Telegraph-Image)
+[![Star History Chart](https://api.star-history.com/svg?repos=x-dr/telegraph-Image&type=Date)](https://star-history.com/#x-dr/telegraph-Image&Date)
 
-[@likebeta](https://github.com/likebeta/telegraph-image-hosting)
+
+
+
 
 
 
